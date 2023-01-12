@@ -5,7 +5,8 @@ import (
 	"fmt"
 )
 
-type Car struct {
+// Car class for car that holds a few car props.
+type car struct {
 	name   string
 	engine string
 	model  string
@@ -19,16 +20,16 @@ type ProductInterface interface {
 	Quantity() int
 }
 
-type Product struct {
-	Car
+type product struct {
+	car
 	Name     string
 	quantity int
 	price    int
 }
 
-func NewProduct(carName string, quantity int, price int, productName string, engineName string, modelName string) *Product {
-	return &Product{
-		Car: Car{
+func NewProduct(carName string, quantity int, price int, productName string, engineName string, modelName string) *product {
+	return &product{
+		car: car{
 			name:   carName,
 			engine: engineName,
 			model:  modelName,
@@ -39,15 +40,15 @@ func NewProduct(carName string, quantity int, price int, productName string, eng
 	}
 }
 
-func (p *Product) Display() string {
+func (p *product) Display() string {
 	return p.Name
 }
 
-func (p *Product) Quantity() int {
+func (p *product) Quantity() int {
 	return p.quantity
 }
 
-func (p *Product) Status() bool {
+func (p *product) Status() bool {
 	if p.quantity <= 0 {
 		fmt.Println("Product Out of Stock")
 		return false
@@ -56,7 +57,7 @@ func (p *Product) Status() bool {
 	return true
 }
 
-func (p *Product) Sell(quantity int) error {
+func (p *product) Sell(quantity int) error {
 	if p.quantity < quantity {
 		return errors.New("not enough products to sell")
 	}
@@ -66,6 +67,6 @@ func (p *Product) Sell(quantity int) error {
 	return nil
 }
 
-func (p *Product) Price() int {
+func (p *product) Price() int {
 	return p.price
 }

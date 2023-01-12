@@ -10,7 +10,8 @@ func main() {
 	product2 := products.NewProduct("toyota", 100, 5000.00, "motor", "V6 engine", "corolla sports")
 
 	var NachoStore store.Store
-	NachoStore.AddProduct(*product1)
-	NachoStore.AddProduct(*product2)
+	NachoStore.AddProduct(product1)
+	NachoStore.AddProduct(product2)
 	NachoStore.ListItems()
+
 }

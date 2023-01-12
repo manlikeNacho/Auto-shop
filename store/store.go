@@ -7,11 +7,11 @@ import (
 
 type Store struct {
 	name         string
-	productStore []products.Product
-	soldProducts []products.Product
+	productStore []products.ProductInterface
+	soldProducts []products.ProductInterface
 }
 
-func (s *Store) AddProduct(p products.Product) {
+func (s *Store) AddProduct(p products.ProductInterface) {
 	s.productStore = append(s.productStore, p)
 }
 
@@ -44,10 +44,10 @@ func (s *Store) ItemsTotalPrice() int {
 }
 
 func (s *Store) SellItems(productName string, quantity int) {
-	var product products.Product
+	var product products.ProductInterface
 
 	for _, v := range s.productStore {
-		if v.Name == productName {
+		if v.Display() == productName {
 			product = v
 			if quantity <= v.Quantity() {
 				product.Sell(quantity)
